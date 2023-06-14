@@ -1,0 +1,65 @@
+// registration  form
+.registration-wrapper {
+    background-color: rgb(0, 0, 0);
+    border-radius: 0.3rem;
+    max-width: 450px;
+    padding: 0 48px 60px 48px;
+
+    .brand-wrapper {
+        padding: 48px 32px;
+
+        .brand-title {
+            color: $secondary-grey;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100%;
+        border-radius: 0;
+    }
+}
+
+.main-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.58)), url("../../images/Splash_DRC.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    padding: 32px 0px;
+    overflow: auto;
+}
+
+
+
+// landing page
+.landing-page-wrapper{
+    background-color: $landing-page-body;
+    .landing-page-content{
+        max-width: 432px;
+        height: fit-content;
+        font-size: $font-size-16;
+    }
+    figure{
+        margin: 110px 0 80px 0;
+        object-fit: cover;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    span{
+        color: $gray;
+        text-align: center;
+    }
+}
+.landing-page-wrapper{
+    .button{
+        background-color: $primary;
+        color: $btn-text-color;
+        font-weight: 600;
+        border-radius: $border-radius-4;
+        border: none;
+        padding: 10px 80px;
+        margin-top: 20px;
+    }
+}
+// End: landing page

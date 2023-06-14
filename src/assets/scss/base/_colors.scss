@@ -1,0 +1,74 @@
+$primary : #2880FC;
+$light-grey : #F3F3F5;
+$red : #EA4234;
+$green : #58A65F;
+$secondary: #FB9F3C;
+$gray : #8694AA;
+$navy-blue : #031837;
+$dark-blue : #233550; //label
+$secondary-grey: #adadad;  //registration
+$danger: #ff0000;
+$input-bg: #FFFFFF;
+
+// border
+$border-color: #E5E7EA;
+
+// // badges
+// $reserved-bg : rgba(234,66,52,0.1);
+// $available-bg: rgba(88,166,95,0.1);
+// $booked-bg: rgba(40,128,252,0.1);
+
+// // popover keys
+// $keys: rgba(3, 24,55,0.5);
+
+// // profile
+$save-btn-bg : $primary;
+$save-btn-text : $input-bg;
+// $icon-bg: rgba(77,141,237,0.08);
+
+// // filter dropdown
+// $hover : rgba(40,128,252,0.5);
+
+
+// Form Control
+$input-border-color:#ffffff;
+$validation-message:#dc3545;
+$form-feedback-invalid-color:$validation-message;
+
+
+// registration page
+// $bs-btn-hover-bg: #b31729;
+$btn-hover-bg: #e7081e;
+$input-focus-color: #ffffff;
+$icon-color: #ffffff;
+$registration-input-bg: rgb(0, 0, 0);
+$input-placeholder-color: #ffffff;
+$input-padding-x: 25px;
+$input-border-color: $border-color; //registartion input
+$input-color: $input-bg;
+// End: registration page
+
+
+// / landing page navbar
+$btn-text-color: $input-bg;
+$nav-bg: $border-color;
+$landing-page-body: $input-bg;
+
+// End: landing page navbar
+
+
+
+//  Overlay
+
+
+$overlay-bg: rgba(0, 0, 0, 0.5);
+// user-profile
+$personal-information-title-font-color:$gray;
+$input-label-color:$dark-blue;
+$input-label-asterisk-color:$red;
+$day-bg:$border-color;
+$day-color:$gray;
+
+// checked label
+$label-color:$input-bg;
+$label-bg-color:$primary;

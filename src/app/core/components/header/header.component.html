@@ -1,0 +1,104 @@
+<!-- Nav-bar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary d-flex flex-column justify-content-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between justify-content-lg-around">
+
+        <!-- Hamburger offcanvas button-->
+        <button class="btn btn-offcanvas d-block d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#hamburgerBackdrop" aria-controls="staticBackdrop">
+            <div class="hamburger">
+                <i class="bi bi-list "></i>
+            </div>
+        </button>
+        <!-- End: Hamburger offcanvas button-->
+
+        <!-- Brand container -->
+        <div class="brand-container d-flex align-items-center ">
+            <figure class="dblogo ">
+                <img src="../assets/images/db-icon.png" alt="dblogo">
+            </figure>
+            <h5 class="brand-title d-flex ms-2 mt-2 mb-0 d-none d-sm-block">DeskBook</h5>
+        </div>
+        <!-- End: Brand container -->
+
+        <!-- Navbar links -->
+        <div class="navbar-nav flex-row align-items-center d-none d-lg-flex">
+            <a class="nav-link active" aria-current="page" href="#">Book Seat</a>
+            <a class="nav-link active" href="#">Booking History</a>
+            <a class="nav-link active" href="#">Request History</a>
+        </div>
+        <!-- End: Navbar links -->
+
+        <!-- Navbar-buttons -->
+        <div class="nav-icons d-flex gap-1 gap-sm-3 d-none d-lg-flex">
+            <button class="btn btn-primary " type="button"><img src="../assets/images/search.png" alt="search"></button>
+            <button class="btn btn-primary " type="button"><img src="../assets/images/notification.png"
+                    alt="notification"></button>
+            <button class="btn btn-primary " type="button" (click)="openOverlay()"><img src="../assets/images/user.png" alt="user"></button>
+            <button class="btn btn-primary1" (click)="logout()" type="button">Logout</button>
+        </div>
+        <!-- End: Navbar-buttons -->
+
+        <!-- three dots offcanvas button-->
+        <button class="btn btn-offcanvas d-block d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#dotBackdrop" aria-controls="staticBackdrop">
+            <div class="dot">
+                <i class="bi bi-three-dots"></i>
+            </div>
+        </button>
+        <!-- End: three dots offcanvas button-->
+    </div>
+</nav>
+
+<!-- Landing Page Offcanvas -->
+
+<!-- Hamburger Offcanvas -->
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="hamburgerBackdrop"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header d-flex justify-content-between">
+        <div class="brand-container d-flex align-items-center">
+            <figure class="dblogo ">
+                <img src="../assets/images/db-icon.png" alt="dblogo">
+            </figure>
+            <h5 class="nav-brand-title d-flex ms-2 mt-2 mb-0 ">DeskBook</h5>
+        </div>
+        <button type="button" class="btn btnclose" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-x"></i></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="navbar-nav flex-column justify-content-start m-0 gap-2">
+            <a class="nav-link active" aria-current="page" href="#">Book Seat</a>
+            <a class="nav-link active" href="#">Booking History</a>
+            <a class="nav-link active" href="#">Request History</a>
+        </div>
+    </div>
+</div>
+<!-- End: Hamburger Offcanvas -->
+
+<!-- three dots Offcanvas -->
+<div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="dotBackdrop"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header d-flex justify-content-between">
+        <div class="brand-container d-flex align-items-center">
+            <figure class="dblogo ">
+                <img src="../assets/images/db-icon.png" alt="dblogo">
+            </figure>
+            <h5 class="brand-title d-flex ms-2 mt-2 mb-0 ">DeskBook</h5>
+        </div>
+        <button type="button" class="btn btnclose" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-x"></i></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-5">
+        <div class="nav-icons d-flex flex-row justify-content-between  ">
+            <button class="btn btn-primary " type="button"><img src="../assets/images/search.png" alt="search"></button>
+            <button class="btn btn-primary " type="button"><img src="../assets/images/notification.png"
+                    alt="notification"></button>
+            <button class="btn btn-primary " type="button" (click)="openOverlay()" data-bs-dismiss="offcanvas"><img src="../assets/images/user.png" alt="user"></button>
+        </div>
+        <button class="btn btn-primary1" (click)="logout()" type="button">Logout</button>
+    </div>
+</div>
+<!-- End: three dots Offcanvas -->
+
+<!-- End: Landing Page Offcanvas -->
+
+<!-- End: Nav-bar -->

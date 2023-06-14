@@ -1,0 +1,43 @@
+
+//font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap');
+
+
+//icons 
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss" ;
+// boootstrap functions
+@import "../node_modules/bootstrap/scss/functions";
+
+@import "../src/assets/scss/base/";
+
+// Required Bootstrap imports
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// optional components
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/utilities/api";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/offcanvas";
+
+
+
+// // custom styles
+@import "../src/assets/scss/utilities/";
+@import "../node_modules/@ng-select/ng-select/scss/default.theme.scss";
+@import "../src/assets/scss/component/";
+@import "../src/assets/scss/layout/";
+
+
+// toastr
+@import '~ngx-toastr/toastr';
+// @import "../src/assets/scss/vendor/";
+@import "../node_modules/@ng-select/ng-select/scss/ng-select.component.scss";

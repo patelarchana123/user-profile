@@ -1,0 +1,197 @@
+// root container
+.main {
+    padding: 27px 80px;
+
+    // filter section
+    .filters{
+        margin-bottom: 20px;
+    }
+
+    // Page Title
+    .title {
+        font-size: 28px;
+        line-height: 40px;
+        font-weight: 700;
+    }
+
+    // seat details container
+    .seat-container {
+        padding: 21px 30px;
+        border: 2px solid $border-color;
+        border-radius: 6px;
+        overflow-x: auto;
+
+        // Selected floor detail
+        .floor {
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        // seat view details
+        .seat-configuration {
+            overflow-x: auto;
+
+            // when filters aren't selected
+            .no-seat-content{
+                color: $gray;
+                text-align: center;
+            }
+
+            // seat row count
+            .count {
+                margin-right: 40px;
+            }
+
+            // Table pairs (Eg: A and B)
+            .pairs {
+                margin-right: 40px;
+
+                .tbl-A {
+                    text-align: center;
+
+
+                    td {
+                        border: 1px solid $gray;
+                        border-left: none;
+                        padding: 10px 20px;
+                    }
+
+                    .desk {
+                        height: 40px;
+                        width: 40px;
+                    }
+                }
+
+                .tbl-B {
+                    text-align: center;
+
+
+                    td {
+                        border: 1px solid $gray;
+                        border-left: none;
+                        border-right: none;
+                        padding: 10px 20px;
+                    }
+
+                    .desk {
+                        height: 40px;
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Styling for extra large device
+@media (min-width: 992px) and (max-width: 1182px) {
+
+    .main {
+        padding: 27px 50px;
+
+        .seat-container {
+
+            .seat-configuration {
+
+                .pairs {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+}
+
+// styling for large device
+@media (min-width: 768px) and (max-width: 992px) {
+    .main {
+        padding: 27px 50px;
+
+        .seat-container {
+
+            .seat-configuration {
+
+                .pairs {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+// styling for medium device
+@media (max-width: 768px) {
+    .main {
+        padding: 27px 40px;
+
+        .filters{
+            margin-bottom: 10px;
+        }
+
+        .seat-container {
+            .seat-details{
+                .floor{
+                    margin-bottom: 20px;
+                }
+            }
+
+            .seat-configuration {
+                .count {
+                    margin-right: 20px;
+                }
+
+                .pairs {
+                    margin-bottom: 20px;
+                    margin-right: 20px;
+                }
+
+            }
+        }
+    }
+}
+
+// styling for small device
+@media (max-width: 576px) {
+    .main {
+        padding: 27px 20px;
+
+        .filters{
+            margin-bottom: 10px;
+        }
+
+        .seat-container {
+            .seat-details{
+                .floor{
+                    margin-bottom: 20px;
+                }
+            }
+
+            .seat-configuration {
+                .count {
+                    margin-right: 20px;
+                }
+
+                .pairs {
+                    margin-bottom: 20px;
+                    margin-right: 20px;
+
+                    .tbl-A {
+                        .desk {
+                            height: 30px;
+                            width: 30px;
+                        }
+                    }
+    
+                    .tbl-B {
+                        .desk {
+                            height: 30px;
+                            width: 30px;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

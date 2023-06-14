@@ -1,0 +1,37 @@
+// landing page offcanvas
+
+.hamburger,
+.btnclose {
+    i {
+        font-size: 35px;
+    }
+}
+
+.dot {
+    i {
+        font-size: 25px;
+    }
+}
+
+.btnclose {
+    border: none;
+}
+
+.offcanvas-body {
+    .navbar-nav {
+        a {
+            width: fit-content;
+            color: $black;
+            font-size: 20px;
+        }
+    }
+
+    .btn-primary1 {
+        background-color: $secondary;
+        border: none;
+        color: $btn-text-color;
+        padding: 5px 24px;
+    }
+}
+
+// End: landing page offcanvas

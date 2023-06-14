@@ -1,0 +1,70 @@
+.form-floating {
+    position: relative;
+    border: 2px solid $input-border-color;
+    border-radius: 6px;
+
+    .label {
+        top: 14px;
+        left: 40px;
+        width: fit-content;
+        height: fit-content;
+        transition: all 0.2s ease-out;
+        color: $secondary-grey ;
+    }
+
+    .form-control {
+        background-color: $registration-input-bg;
+        color: $input-color;
+        box-shadow: $input-focus-box-shadow;
+        padding: $input-padding;
+        border: none;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+            &~.label {
+                top: -30px;
+                left: -16px;
+                background-color: $registration-input-bg;
+                color: $input-placeholder-color;
+            }
+        }
+    }
+}
+
+
+.form-floating:focus-within {
+    border-color: $danger;
+}
+.form-floating{
+    &.ng-touched{
+        border-color: $danger;
+    }
+}
+// invalid-message
+.invalid-feadback {
+    font-size: 14px;
+}
+
+// icons
+.icon {
+    color: $icon-color;
+    position: absolute;
+    top: 13px;
+    left: 14px;
+    font-size: 20px;
+}
+
+.icon-sm {
+    font-size: 16px;
+    top: 18px;
+}
+
+.eye-icon {
+    color: $icon-color;
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    cursor: pointer;
+}
+
+// End: registration  form

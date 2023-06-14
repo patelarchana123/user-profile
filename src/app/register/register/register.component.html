@@ -1,0 +1,149 @@
+<div class="main-container py-0 py-sm-5">
+    <!-- form-wrapper -->
+    <div class="registration-wrapper d-flex flex-column justify-content-center align-item-center m-auto">
+        <!-- brand :start-->
+        <div class="brand-wrapper text-center">
+
+            <!-- brand-image : start -->
+            <figure>
+                <img src="../assets/images/db-icon.png" alt="logo" />
+            </figure>
+            <!-- brand-image : end -->
+
+            <!-- brand-title : start -->
+            <h6 class="brand-title mt-3">DeskBook</h6>
+            <!-- brand-title : end -->
+        </div>
+        <!-- brand :end-->
+        <!-- form : start-->
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <!-- First Name :start -->
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" formControlName="firstName" required placeholder=" "
+                        (blur)="capitalizeFirstLetter('firstName')">
+                    <label for="floatingInput" class="label px-1 py-0 badge text-bg-input-bg">First Name</label>
+                    <span class="icon bi bi-person-fill"></span>
+                </div>
+                <!-- validation message -->
+                <div *ngIf="((submitted && f['firstName'].errors) || (f['firstName'].touched) || (f['firstName'].dirty) )"
+                    class="invalid-feedback d-block">
+                    <div *ngIf="f['firstName'].errors?.['required']">This field is Required</div>
+                    <div *ngIf="f['firstName'].errors?.['pattern']">Please enter a valid First Name</div>
+                    <div
+                        *ngIf="(f['firstName'].errors?.['minlength'] || f['firstName'].errors?.['maxlength']) && !f['firstName'].errors?.['pattern']">
+                        First name
+                        must be between 2-100 characters</div>
+                </div>
+            </div>
+            <!-- First Name :End -->
+            <!-- Last Name :start -->
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" formControlName="lastName" required placeholder=" "
+                        (blur)="capitalizeFirstLetter('lastName')">
+                    <label for="floatingInput" class="label px-1 py-0  badge text-bg-input-bg">Last Name</label>
+                    <span class="icon bi bi-person-fill"></span>
+                </div>
+                <!-- validation message -->
+                <div *ngIf="((submitted && f['lastName'].errors) || (f['lastName'].touched) || (f['lastName'].dirty))"
+                    class="invalid-feedback d-block">
+                    <div *ngIf="f['lastName'].errors?.['required']">This field is Required</div>
+                    <div *ngIf="f['lastName'].errors?.['pattern']">Please enter a valid Last Name</div>
+                    <div
+                        *ngIf="((f['lastName'].errors?.['minlength'] || f['lastName'].errors?.['maxlength'])) && !f['lastName'].errors?.['pattern']">
+                        Last name
+                        must be between 2-100 characters</div>
+                </div>
+            </div>
+            <!-- Last Name :End -->
+            <!-- Email :start -->
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="email" (input)="removeallReadyRegistered()" class="form-control"
+                        (keypress)="spaceEvent($event)" appPreventPaste maxlength="256" formControlName="email" required
+                        placeholder=" ">
+                    <label for="floatingInput" class="label px-1 py-0  badge text-bg-input-bg">Email Id</label>
+                    <span class="icon icon-sm bi bi-envelope-fill"></span>
+                </div>
+                <!-- validation message -->
+                <div *ngIf="((submitted && f['email'].errors) || (f['email'].touched)  || (f['email'].dirty))"
+                    class="invalid-feedback d-block">
+                    <div *ngIf="f['email'].errors?.['required']">This field is Required
+                    </div>
+
+                    <div *ngIf="lengthError && !patternError  && !f['email'].errors?.['required'] ">
+                        Email ID must be between 3-80 characters</div>
+
+                    <div *ngIf="patternError && !lengthError && !f['email'].errors?.['required']">
+                        Please enter valid Email Id</div>
+
+                    <div *ngIf="allReadyRegistered">Email Id Already Exists</div>
+
+                </div>
+            </div>
+            <!-- Email :End -->
+            <!-- Password :start -->
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="Password" class="form-control" formControlName="password" required placeholder=" "
+                        (keypress)="spaceEvent($event)" (paste)="onPaste($event)"
+                        [attr.type]="password ? 'text':'password'">
+                    <label for="floatingInput" class="label px-1 py-0  badge text-bg-input-bg">Password</label>
+                    <span class="icon bi bi-key-fill"></span>
+                    <span (click)="togglePasswordText()" *ngIf="!password"
+                       class=" eye-icon bi bi-eye-fill" ></span>
+                    <span (click)="togglePasswordText()" *ngIf="password" class=" eye-icon bi bi-eye-slash-fill " ></span>
+                </div>
+                <!-- validation message -->
+                <div *ngIf="((submitted && f['password'].errors) || (f['password'].touched) || (f['password'].dirty))"
+                    class="invalid-feedback d-block">
+                    <div *ngIf="f['password'].errors?.['required']">This field is Required</div>
+                    <div *ngIf="f['password'].errors?.['pattern'];else invalidError">At least 1 uppercase alphabet, 1
+                        lowercase
+                        alphabet,
+                        1 Special Character (&#64;&#36;&#33;&#95;&#38;&#35;) and 1 numeric value required</div>
+                    <ng-template #invalidError>
+                        <div *ngIf="(f['password'].errors?.['minlength'] || f['password'].errors?.['maxlength'])">
+                            Password must be between 8-25 characters</div>
+
+                    </ng-template>
+                </div>
+            </div>
+
+            <!-- Password :end -->
+            <!--Confirm Password :start -->
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input type="Password" class="form-control" formControlName="confirmPassword" required
+                        (keypress)="spaceEvent($event)" (paste)="onPaste($event)" placeholder=" "
+                        [attr.type]="confirmPassword ? 'text':'password'">
+                    <label for="floatingInput" class="label px-1 py-0  badge text-bg-input-bg">Confirm Password</label>
+                    <!-- key icon -->
+                    <span class="icon bi bi-key-fill"></span>
+                    <!--  -->
+                    <span (click)="toggleConfirmPasswordText()" *ngIf="!confirmPassword"
+                       class=" eye-icon bi bi-eye-fill" ></span>
+                    <span (click)="toggleConfirmPasswordText()" *ngIf="confirmPassword"
+                         class=" eye-icon bi bi-eye-slash-fill "></span>
+                </div>
+                <!-- validation message -->
+                <div *ngIf="((submitted && f['confirmPassword'].errors) || (f['confirmPassword'].touched) || (f['confirmPassword'].dirty))"
+                    class="invalid-feedback d-block">
+                    <div *ngIf="f['confirmPassword'].errors?.['required']">This field is Required</div>
+                    <div *ngIf="f['confirmPassword'].errors?.['matching']">Password does not match</div>
+                </div>
+            </div>
+            <!-- Confirm Password :End -->
+            <!-- button wrapper : start -->
+            <div class="btn-wrapper d-flex flex-column gap-3 flex-sm-row justify-content-between">
+                <button type="button" routerLink="/" routerLinkActive="router-link-active"
+                    class="btn btn-outline-danger">Back to Sign In</button>
+                <button type="submit" class="btn btn-danger">Register</button>
+            </div>
+            <!-- button wrapper : End -->
+        </form>
+        <!-- form :end-->
+    </div>
+</div>

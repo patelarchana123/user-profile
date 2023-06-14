@@ -1,0 +1,82 @@
+.form-group {
+    position: relative;
+}
+
+.ng-select{
+    z-index: 1;
+}
+
+.ng-select .ng-arrow-wrapper {
+    display: none;
+}
+
+.ng-select .ng-select-container {
+    border: none;
+    min-width: 130px;
+    min-height: 40px;
+    margin-right: 36px;
+    background-color: $light-grey;
+}
+
+.dropdown-img {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.ng-dropdown-panel.ng-select-bottom {
+    margin-top: 5px;
+}
+
+// start: calender
+#calender::placeholder{
+    color: $gray;
+}
+
+.calender {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 8px 10px 8px 10px;
+    background-color: $light-grey;
+    box-sizing: border-box;
+    
+    
+    // when calender selected
+    &:focus-within {
+        outline: 1px solid $navy-blue;
+        border-radius: 4px;
+    }
+    
+    
+    .form-control {
+        color: $gray;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0px;
+        width: 120px;
+        box-shadow: none;
+        background: $light-grey;
+      
+        &:focus {
+            box-shadow: none;
+            background: $light-grey;
+        }
+    }
+}
+
+#city,#floor{
+    border: none;
+    outline: none;
+}
+
+.bs-datepicker {
+    margin-top: 18px;
+}
+
+// end: calender

@@ -1,0 +1,32 @@
+.overlay {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: $overlay-bg;
+    z-index: 999;
+  
+    .overlay-form {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      width: $overlay-form-width;
+      max-width: 100%;
+      background-color: $white;
+      border-radius: 0;
+  
+    }
+    .block-header {
+      position: relative;
+      top: 0;
+      flex-shrink: 0;
+    }
+  }
+  
+
+  
+  

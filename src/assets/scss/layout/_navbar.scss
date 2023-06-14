@@ -1,0 +1,93 @@
+// landing page nav-bar\
+.dblogo {
+    object-fit: cover;
+
+    img {
+        height: 40px;
+        width: 54px;
+    }
+}
+
+.nav-brand-title {
+    font-size: 30px;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    font-weight: 900;
+}
+
+.navbar {
+    border-bottom: 1px solid rgba($color: $border-color, $alpha: 0.5);
+    height: 80px;
+
+    .btn-offcanvas {
+        border: none;
+    }
+}
+
+.navbar-nav {
+    margin-left: 180px;
+    margin-right: 20px;
+    gap: 55px;
+
+    a {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: $font-size-16;
+        color: $black;
+        ;
+    }
+}
+
+.nav-icons {
+
+    .btn-primary {
+        background-color: $light-grey;
+        border: none;
+    }
+    .btn-primary:active {
+        background-color: $light-grey;
+        border: none;
+    }
+    .btn-primary1 {
+        background-color: $secondary;
+        border: none;
+        color: $btn-text-color;
+        padding: 5px 24px;
+    }
+}
+.hamburger,
+.dot,
+.btnclose {
+    i {
+        font-size: 35px;
+    }
+}
+.btnclose{
+    border: none;
+}
+.offcanvas-body {
+    .navbar-nav {
+        a {
+            width: fit-content;
+            color: $black;
+            font-size: 20px;
+        }
+    }
+
+    .btn-primary1 {
+        background-color: $secondary;
+        border: none;
+        color: $btn-text-color;
+        padding: 5px 24px;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1182px) {
+    .navbar-nav {
+        gap: 25px;
+        margin-left: 49px;
+        margin-right: 20px;
+    }
+}
+
+// End: landing page nav-bar\

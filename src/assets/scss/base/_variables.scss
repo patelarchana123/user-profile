@@ -1,0 +1,67 @@
+$font-family-base: 'Inter', sans-serif;
+
+// Contrast ratio
+$min-contrast-ratio: 3;
+
+// Border
+$border-radius: 4px;
+
+// Form Control
+$form-floating-label-opacity:2;
+$input-border-width: 2px;
+$input-focus-box-shadow: none;
+$form-floating-input-padding-t:0px;
+$form-floating-input-padding-b:0px;
+$form-floating-padding-y:0px;
+$form-floating-padding-x:0px;
+$input-padding:10px 15px 10px 40px;
+
+$form-floating-label-transform:   scale(0.85) translateY(20px) translateX(40px) ;
+
+// navbar
+// Landing Page navbar
+
+$font-size-16: 16px;
+$font-size-18: 18px;
+$font-size-22: 22px;
+$font-size-14: 14px;
+$font-size-11: 11px;
+
+$border-radius-4:4px;
+$border-radius-10:10px;
+// offcanvas
+$btn-close-color:$navy-blue;
+$black:$navy-blue;
+$offcanvas-horizontal-width:500px;
+// End:offcanvas
+// End: Landing Page navbar
+// End: navbar
+
+
+
+//  overlay
+$overlay-form-width: 500px;
+$overlay-filter: 200px;
+//  End: overlay
+
+
+// user-profile
+$header-title:$font-size-22;
+$header-title-color:$navy-blue;
+$header-padding:20px 30px;
+$profile-image-detail-block-padding:25px 30px 0px 30px;
+$userName-font-size:$font-size-22;
+$userName-color:$navy-blue;
+$personal-information-title-font-size:$font-size-16;
+$label-font-size:$font-size-16;
+
+// border
+$border-radius-0:2px;
+$border-radius-1:$border-radius-4;
+$border-radius-2:8px;
+
+// user profile view
+$line-height-40: 40px;
+$line-height-30: 30px;
+$border-radius-2: 2px;
+// End: user profile view

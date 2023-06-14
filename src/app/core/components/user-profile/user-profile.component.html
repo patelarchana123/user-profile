@@ -1,0 +1,451 @@
+<div class="overlay cdk-overlay-container px-1">
+
+    <!-- Start: user profile view -->
+    <!-- Start: overlay container -->
+    <!-- <div class="overlay overlay-main-container cdk-overlay-container"> -->
+
+    <div class="block d-flex flex-column overlay-form cdk-overlay-pane">
+        <!-- Start: Header of overlay -->
+        <header class="block-header">
+            <!-- Start: Header container -->
+            <div class="w-100 d-flex align-items-center justify-content-between">
+
+                <!-- header title -->
+                <h5 class="block-title mb-0">My Profile</h5>
+                <!-- cancel button -->
+                <button class="btn-close border-0 bg-white" (click)="cancel()">
+                    <img src="../../../../assets/images/close-icon.png" alt="cancle-image" />
+                </button>
+
+
+
+            </div>
+            <!-- End: Header container -->
+        </header>
+
+        <!-- form-container start -->
+        <div *ngIf="edit" class="form-container overflow-auto">
+            <!-- form start -->
+            <form autocomplete="off" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+                <!-- profile-image-details start -->
+                <div class="profile-image-details d-flex align-items-center">
+                    <!-- profile-image-block start -->
+                    <div class="profile-image-block rounded-circle position-relative">
+                        <!-- profile-photo -->
+                        <figure class="profile-image pb-0 overflow-hidden rounded-circle">
+                            <img [src]="url" (error)="onImageError()" alt="profile-photo" />
+                        </figure>
+                        <!-- input-file label -->
+                        <label for="profile-photo" class="position-absolute edit-icon">
+                            <img src="../../../../assets/images/edit-icon.png" alt="edit-icon" /></label>
+                        <!-- input-file -->
+                        <input class="d-none" type="file" name="profilePictureFileString" id="profile-photo"
+                            formControlName="profilePictureFileString" accept=".jpeg, .png, .jpg"
+                            (change)="onSelect($event)" />
+                    </div>
+                    <!-- profile-image-block end -->
+
+                    <!-- firstName & lastName : Start -->
+                    <div class="userName-details d-flex flex-column flex-grow-1">
+                        <!-- input firstName -->
+                        <input type="text" name="firstName" value="" formControlName="firstName" required
+                            (blur)="capitalizeFirstLetter('firstName')" class="w-100" />
+
+                        <!-- validation message -->
+                        <div *ngIf="
+                (submitted && f['firstName'].errors) ||
+                f['firstName'].touched ||
+                f['firstName'].dirty
+              " class="invalid-feedback d-block">
+                            <div *ngIf="f['firstName'].errors?.['required']">
+                                Please enter your First Name
+                            </div>
+                            <div *ngIf="f['firstName'].errors?.['pattern']">
+                                Please enter a valid First Name
+                            </div>
+                            <div
+                                *ngIf="(f['firstName'].errors?.['minlength'] || f['firstName'].errors?.['maxlength']) && !f['firstName'].errors?.['pattern']">
+                                First name must be between 2-100 characters
+                            </div>
+                        </div>
+                        <!-- input lastName -->
+                        <input type="text" name="lastName" value="" formControlName="lastName" required
+                            (blur)="capitalizeFirstLetter('lastName')" class="w-100" />
+
+                        <!-- validation message -->
+                        <div *ngIf="
+                (submitted && f['lastName'].errors) ||
+                f['lastName'].touched ||
+                f['lastName'].dirty
+              " class="invalid-feedback d-block">
+                            <div *ngIf="f['lastName'].errors?.['required']">
+                                Please enter a valid Last Name
+
+                            </div>
+                            <div *ngIf="f['lastName'].errors?.['pattern']">
+                                Please enter a valid Last Name
+                            </div>
+                            <div
+                                *ngIf="((f['lastName'].errors?.['minlength'] || f['lastName'].errors?.['maxlength'])) && !f['lastName'].errors?.['pattern']">
+                                Last name must be between 2-100 characters
+                            </div>
+                        </div>
+                    </div>
+                    <!-- firstName & lastName : End -->
+                </div>
+                <!-- profile-image-details end -->
+                <!-- user detail start -->
+                <div class="user-detail-block d-flex flex-column">
+                    <!-- start Personal Information block -->
+                    <div class="w-100 personal-info-block">
+                        <h2 class="detail-information-title mb-0">PERSONAL INFORMATION</h2>
+                        <div class="personal-info d-flex flex-column">
+                            <!-- Email : Start -->
+                            <div class="d-flex flex-column info">
+                                <label for="email">Email<sup>*</sup></label>
+                                <input type="email" value="" formControlName="emailId" [disabled]="true" />
+                            </div>
+                            <!-- Email : End -->
+
+                            <!-- Phone No : Start -->
+                            <div class="d-flex flex-column info">
+                                <label for="phone-no">Phone No.<sup>*</sup></label>
+                                <input type="text" formControlName="phoneNumber" placeholder="Enter Phone No."
+                                    maxlength="10" />
+
+                                <!-- validation message -->
+                                <div *ngIf="
+                    (submitted && f['phoneNumber'].errors) ||
+                    f['phoneNumber'].touched ||
+                    f['phoneNumber'].dirty
+                  " class="invalid-feedback d-block">
+                                    <div *ngIf="f['phoneNumber'].errors?.['required']">
+                                        Please enter phone no.
+                                    </div>
+                                    <div
+                                        *ngIf="f['phoneNumber'].errors?.['minlength'] && !f['phoneNumber'].errors?.['pattern']">
+                                        Only 10-digit number is required
+                                    </div>
+                                    <div
+                                        *ngIf="f['phoneNumber'].errors?.['maxlength'] && !f['phoneNumber'].errors?.['pattern']">
+                                        Only 10-digit number is required
+                                    </div>
+                                    <div *ngIf="f['phoneNumber'].errors?.['pattern']">
+                                        Please enter a numeric value only
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Phone No : End -->
+
+                            <!-- Designation : Start -->
+                            <div class="d-flex flex-column info">
+                                <label for="designation">Designation<sup>*</sup></label>
+                                <ng-select appearance="outline" id="designation" labelForId="designation"
+                                    placeholder="Select Designation" formControlName="designation"
+                                    [items]="designations" bindLabel="name" bindValue="id"
+                                    (change)="designationselected($event)" [clearable]="false">
+                                </ng-select>
+                                <label for="floor"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                        alt="dropdown" /></label>
+
+                                <!-- validation message -->
+                                <div *ngIf="
+                    (submitted && f['designation'].errors) ||
+                    f['designation'].touched ||
+                    f['designation'].dirty
+                  " class="invalid-feedback d-block">
+                                    <div *ngIf="f['designation'].errors?.['required']">
+                                        Please select designation
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Designation :  end -->
+                        </div>
+                    </div>
+                    <!-- end Personal Information block -->
+
+                    <!-- start Seat Information block -->
+                    <div class="w-100 seat-info-block">
+                        <h2 class="detail-information-title mb-0">SEAT INFORMATION</h2>
+                        <div class="seat-info d-flex flex-column">
+                            <!-- Mode of Work block -->
+                            <div class="d-flex flex-column info">
+                                <div class="d-flex">
+                                    <label for="mode-of work">Mode of Work<sup>*</sup></label>
+                                    <div class="ms-2 position-relative">
+                                        <i *ngIf="showIcon" (click)="showMessage()" class="bi bi-info-circle"></i>
+                                        <div *ngIf="modeMessage" class="hybrid-message position-absolute">
+                                                Multiple days can be selected.<br>
+                                                Max 4-days and Min 1-day selection will be allowed. 
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- mode of work select-->
+                                <ng-select appearance="outline" id="mode-of work" labelForId="modeofwork"
+                                    placeholder="mode of work" formControlName="modeOfWork" [items]="modeOfWork"
+                                    placeholder="Select Mode of Work" formControlName="modeOfWork" [items]="modeOfWork"
+                                    bindLabel="name" bindValue="id" (change)="modeOfWorkselected($event)"
+                                    [clearable]="false">
+                                </ng-select>
+                                <label for="modeofwork"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                        alt="dropdown" /></label>
+                                <!-- validation message -->
+                                <div *ngIf="
+                    (submitted && f['modeOfWork'].errors) ||
+                    f['modeOfWork'].touched ||
+                    f['modeOfWork'].dirty
+                  " class="invalid-feedback d-block">
+                                    <div *ngIf="f['modeOfWork'].errors?.['required']">
+                                        Please select Mode of work
+                                    </div>
+                                </div>
+                                <!-- weeks -->
+                                <!-- (change)="checkboxChanged($event)" -->
+                                <div *ngIf="f['modeOfWork']?.value === 1" class="d-flex flex-wrap w-100 days">
+                                    <ng-container *ngFor="let day of userFormArray.controls; let i = index">
+                                        <label formArrayName="days"
+                                            [ngClass]="{'selected': f['days'].value[i] === true, 'unselected' : f['days'].value[i] === false }"
+                                            class="day">
+                                            <input type="checkbox" [formControlName]="i"
+                                                (change)="checkboxChanged($event)" class="d-none" />
+                                            {{ daysData[i]?.day| uppercase | shorten : 3 }}
+                                        </label>
+                                    </ng-container>
+
+                                    <div *ngIf="((submitted && f['days'].errors) || (f['days'].untouched)) ||(f['days'].dirty )"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="f['days'].errors?.['required']">Please select Days</div>
+                                        <div *ngIf="validationMessage">You can select Maximum 4 days</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Mode of Work block  -->
+                            <!-- start City & Floor block -->
+                            <div class="w-100 d-flex  flex-wrap  flex-sm-nowrap seat-info-select-options-block-1">
+                                <!-- City -->
+                                <div class="d-flex flex-column w-100 info">
+                                    <label for="City">City<sup>*</sup></label>
+                                    <ng-select appearance="outline" id="city" labelForId="city"
+                                        placeholder="Select City" formControlName="city" [items]="city" bindLabel="name"
+                                        bindValue="id" (change)="cityselected($event)" [clearable]="false">
+                                    </ng-select>
+
+                                    <label for="city"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                            alt="dropdown" /></label>
+                                    <div *ngIf="((submitted && f['city'].errors) || (f['city'].touched)) ||(f['city'].dirty)"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="f['city'].errors?.['required']">Please select City</div>
+                                    </div>
+                                </div>
+
+                                <!-- Floor -->
+                                <div class="d-flex flex-column w-100 info">
+                                    <label for="Floor">Floor<sup>*</sup></label>
+                                    <ng-select appearance="outline" id="floor" labelForId="floor"
+                                        placeholder="Select Floor" formControlName="floor" [items]="floor"
+                                        bindLabel="name" bindValue="id" (change)="floorselected($event)"
+                                        [clearable]="false">
+                                    </ng-select>
+                                    <label for="floor"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                            alt="dropdown">
+                                    </label>
+                                    <div *ngIf="((submitted && f['floor'].errors) || (f['floor'].touched)) ||(f['floor'].dirty)"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="f['floor'].errors?.['required']">Please select floor</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end City & Floor block -->
+                            <!-- start Column & Seat No block -->
+                            <div class="w-100 d-flex flex-wrap flex-sm-nowrap  seat-info-select-options-block-2">
+                                <!-- Column -->
+                                <div class="d-flex flex-column w-100 info">
+                                    <label for="Column">Column<sup>*</sup></label>
+                                    <ng-select appearance="outline" id="column" labelForId="yesno"
+                                        placeholder="Select Column" formControlName="column" [items]="column"
+                                        bindLabel="name" bindValue="id" (change)="columnselected($event)"
+                                        [clearable]="false">
+                                    </ng-select>
+                                    <label for="column"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                            alt="dropdown" /></label>
+                                    <div *ngIf="((submitted && f['column'].errors) || (f['column'].touched)) ||(f['column'].dirty)"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="f['column'].errors?.['required']">Please select column</div>
+                                    </div>
+                                </div>
+
+                                <!-- Seat No -->
+                                <div class="d-flex flex-column w-100 info">
+                                    <label for="seatNo">Seat No<sup>*</sup></label>
+                                    <ng-select appearance="outline" id="seatNo" labelForId="yesno"
+                                        placeholder="Select Seat No" formControlName="seatNo" [items]="seatNo"
+                                        bindLabel="seatNumber" bindValue="id" [clearable]="false">
+                                        <!-- (change)="seatselected($event)" -->
+                                    </ng-select>
+                                    <label for="seatNo"><img class="dropdown-img" src="../assets/images/dropdown.png"
+                                            alt="dropdown" /></label>
+                                    <div *ngIf="((submitted && f['seatNo'].errors) || (f['seatNo'].touched)) ||(f['seatNo'].dirty)"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="f['seatNo'].errors?.['required']">Please select Seat No</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end Column & Seat No block -->
+                            <!-- end Column & Seat No block -->
+                        </div>
+                    </div>
+                    <!-- end Personal Information block -->
+                </div>
+                <!-- user detail end -->
+                <!-- save-btn-block -->
+                <div class="save-btn-block d-flex flex-row-reverse">
+                    <!-- save-btn -->
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+            </form>
+            <!-- form end -->
+        </div>
+        <!-- form-container end -->
+
+        <!-- Start: user profile view container -->
+        <div *ngIf="!edit">
+            <!-- Start: user profile container -->
+            <!-- Start: user profile image and details -->
+            <div class="profile-container d-flex align-items-center">
+                <!-- user profile image -->
+                <figure class="profile-pic-container rounded-circle">
+                    <img class="profile-pic" [src]="url" (error)="onImageError()" alt="profile">
+                </figure>
+                <!-- user profile details -->
+                <div class="profile-details d-flex flex-column">
+                    <span class="profile-name">{{ userData?.firstName || '-' }} {{ userData?.lastName || '-' }}</span>
+                    <span class="profile-email">{{ userData?.emailId || '-' }}</span>
+                    <button class="profile-edit-btn" (click)="createUserForm()">EDIT PROFILE</button>
+                </div>
+            </div>
+            <!-- End: user profile image and details -->
+
+            <!-- Start: user profile form data -->
+            <div class="overlay-view-container d-flex flex-column">
+                <!-- Start: user profile personal information conatiner -->
+                <div class="user-profile-info d-flex flex-column">
+                    <span class="container-text">PERSONAL INFORMATION</span>
+                    <div class="information-container d-flex flex-column">
+                        <!-- user profile personal information data -->
+                        <!-- row 1 -->
+                        <div class="row">
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- phone icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/phone.png" alt="phone">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- phone number label -->
+                                    <span class="info-label">PHONE NO</span>
+                                    <!-- phone number data -->
+                                    <span class="info-data">{{ userData?.phoneNumber || '-' }}</span>
+                                </div>
+                            </div>
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- designation icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/designation.png" alt="designation">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- designation label -->
+                                    <span class="info-label">DESIGNATION</span>
+                                    <!-- designation data -->
+                                    <span class="info-data">{{userData?.designation?.name || '-'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row 2 -->
+                        <div class=" row">
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- city icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/city.png" alt="city">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- city label -->
+                                    <span class="info-label">CITY</span>
+                                    <!-- city data -->
+                                    <span class="info-data">{{userData?.city?.name || '-'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: user profile personal information conatiner -->
+
+                <!-- Start: user profile seat information conatiner -->
+                <div class="user-profile-info d-flex flex-column">
+                    <span class="container-text">SEAT INFORMATION</span>
+                    <div class="information-container d-flex flex-column">
+                        <!-- user profile seat information data -->
+                        <!-- row 1 -->
+                        <div class="row">
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- floor icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/floor.png" alt="floor">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- floor label -->
+                                    <span class="info-label">FLOOR</span>
+                                    <!-- floor data -->
+                                    <span class="info-data">{{userData?.floor?.name || '-'}}</span>
+                                </div>
+                            </div>
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- column icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/column.png" alt="column">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- column label -->
+                                    <span class="info-label">COLUMN</span>
+                                    <!-- column data -->
+                                    <span class="info-data">{{userData?.column?.name || '-'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row 2 -->
+                        <div class="row">
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- seat number icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/seat.png" alt="seat">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- seat number label -->
+                                    <span class="info-label">SEAT NO</span>
+                                    <!-- seat number data -->
+                                    <span class="info-data">{{userData?.seat?.seatNumber || '-'}}</span>
+                                </div>
+                            </div>
+                            <div class="info-container col-sm-6 col-12 d-flex flex-row">
+                                <!-- mode of work icon -->
+                                <div class="info-icon">
+                                    <img src="../../../../assets/images/designation.png" alt="mode of work">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <!-- mode of work label -->
+                                    <span class="info-label">MODE OF WORK</span>
+                                    <!-- mode of work data -->
+                                    <span class="info-data">{{userData?.modeOfWork?.name || '-'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: user profile seat information conatiner -->
+            </div>
+            <!-- End: user profile form data -->
+            <!-- End: user profile image and details -->
+            <!-- End: user profile container -->
+        </div>
+    </div>
+</div>
+<!-- End: overlay container -->
+<!-- End: user profile view -->
